@@ -1,17 +1,20 @@
 const botconfig = require("./botconfig.json");
 const tokenfile = require("./token.json");
 const Discord = require("discord.js");
+const YTDL = require("ytdl-core");
 const fs = require("fs");
 
 //Initializes bot & commands
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
 
+
+//Load commands
 fs.readdir("./commands/", (err, files) => {
    
     if(err) console.log(err);
     
-    let jsfile = files.filter(f => f.split(".").pop() === "js")
+    let jsfile = files.filter(f => f.split(".").pop() === "js");
     if(jsfile.length <=0){
         console.log("Couldn't find commands.");
         return;
