@@ -9,6 +9,8 @@
   "author": "Chester Guinto",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.4.2"
+    "discord.js": "^11.4.2",
+    "ffmpeg": "0.0.4",
+    "opusscript": "0.0.6"
   }
 }

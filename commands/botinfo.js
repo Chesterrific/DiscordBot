@@ -1,3 +1,8 @@
+/*
+ * Returns Bot Info
+ */
+
+
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
@@ -11,8 +16,8 @@ module.exports.run = async (bot, message, args) => {
                .addField("Created On:", bot.user.createdAt);
        
        return message.channel.send(botembed);
-}
+};
 
 module.exports.help = {
     name: "botinfo"
-}
+};
