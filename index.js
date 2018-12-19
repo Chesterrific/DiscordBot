@@ -3,7 +3,7 @@ const tokenfile = require("./token.json");
 const Discord = require("discord.js");
 const fs = require("fs");
 
-
+//Initializes bot & commands
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
 
@@ -37,7 +37,11 @@ bot.on("message", async message => {
    
    let prefix = botconfig.prefix;
    let messageArray = message.content.split(" ");
+   
+   //Command to do
    let cmd = messageArray[0];
+   
+   //Argument after command (e.x. song name)
    let args = messageArray.slice(1);
    
    let commandFile = bot.commands.get(cmd.slice(prefix.length));

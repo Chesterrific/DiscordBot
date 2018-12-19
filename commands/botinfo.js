@@ -18,6 +18,7 @@ module.exports.run = async (bot, message, args) => {
        return message.channel.send(botembed);
 };
 
+//Command name
 module.exports.help = {
     name: "botinfo"
 };

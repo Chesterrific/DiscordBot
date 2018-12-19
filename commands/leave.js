@@ -13,6 +13,7 @@ module.exports.run = async (bot, message, args) => {
     }
 };
 
+//Command name
 module.exports.help = {
     name: "leave"
 };
