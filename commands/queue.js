@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
         //Add song to queue
         songQueue.push(song);
         //Companion queue to track who added the song
-        songOwner.push(`${message.author.username}`)
+        songOwner.push(`${message.author.username}`);
         console.log(songQueue[0]);
         let info = await YTDL.getInfo(songQueue[0]);
         message.channel.send(`Added "${info.title}" to Queue | From: ${message.author.username}`)
