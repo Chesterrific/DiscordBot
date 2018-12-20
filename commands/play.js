@@ -1,19 +1,21 @@
 /*
  * Plays music added from queue
  */
+const botconfig = require("../botconfig.json"); //Contains Volume
 const Discord = require("discord.js");
 const YTDL = require("ytdl-core");
 const songQueueModule = require("./queue.js");
 
 var songQueue = songQueueModule.songQueue;
+var songOwner = songQueueModule.songOwner;
 var songOptions = {quality: "highestaudio", filter: "audioonly"};
-var streamOptions = {volume: 0.1};
 var alreadyPlaying = false; //bool to check if song is already playing.
 
 async function Play(connection, message) {
-    let dispatcher = await connection.playStream(YTDL(songQueue[0], songOptions), streamOptions);
+    let dispatcher = await connection.playStream(YTDL(songQueue[0], songOptions), botconfig);
     let info = await YTDL.getInfo(songQueue[0]);
-    message.channel.send(`Now Playing: ${info.title}`);
+    message.channel.send(`Now Playing: ${info.title} | From: ${songOwner[0]}`)
+            .then(msg => msg.delete(info.length_seconds * 1000)); //convert video length to milliseconds and delete message after duration/video length.
     songQueue.shift();
 
     dispatcher.on("end", function () {

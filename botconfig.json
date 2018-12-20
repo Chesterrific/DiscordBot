@@ -1,4 +1,5 @@
 {
     "name": "Chester's Bot",
-    "prefix": "."
+    "prefix": ".",
+    "volume" : 0.1
 }

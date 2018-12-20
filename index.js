@@ -44,7 +44,7 @@ bot.on("message", async message => {
    //Command to do
    let cmd = messageArray[0];
    
-   //Argument after command (e.x. song name)
+   //Everything after the command (e.x. song name)
    let args = messageArray.slice(1);
    
    let commandFile = bot.commands.get(cmd.slice(prefix.length));
