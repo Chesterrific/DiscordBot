@@ -6,18 +6,22 @@ const YTDL = require("ytdl-core");
 const Search = require("yt-search");
 
 var songQueue = [];
-var songOwner = [];
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (bot, message, args) => {    
     if (YTDL.validateURL(args.toString())) {
         //converts args (Song name/http to string)
-        let song = args.toString();
+        let url = args.toString();
+        let info = await YTDL.getInfo(url);
+        
         //Add song to queue
-        songQueue.push(song);
-        //Companion queue to track who added the song
-        songOwner.push(`${message.author.username}`);
-        console.log(songQueue[0]);
-        let info = await YTDL.getInfo(songQueue[0]);
+        songQueue.push({
+            songURL: url,
+            songTitle: info.title,
+            requestor: `${message.author.username}`,
+            songLength: info.length_seconds
+        });
+
+        console.log(songQueue[songQueue.length-1]);
         message.channel.send(`Added "${info.title}" to Queue | From: ${message.author.username}`)
                 .then(msg => msg.delete(10000));
     } else {
@@ -25,12 +29,17 @@ module.exports.run = async (bot, message, args) => {
             if (err) {
                 return message.channel.send("Something went wrong.");
             }
-            let video = res.videos[0];
+            let video = res.videos[0];  //Gives us video URL
             let url = "https://www.youtube.com" + video.url;
             if (YTDL.validateURL(url)) {
-                songQueue.push(url);
-                songOwner.push(`${message.author.username}`);
-                console.log(songQueue[0]);
+                songQueue.push({
+                    songURL: url,
+                    songTitle: video.title,
+                    requestor: `${message.author.username}`,
+                    songLength: video.seconds
+                });
+                
+                console.log(songQueue[songQueue.length-1]);
                 message.channel.send(`Added "${video.title}" to Queue | From: ${message.author.username}`)
                         .then(msg => msg.delete(10000));
             } else {
@@ -46,4 +55,3 @@ module.exports.help = {
 };
 
 module.exports.songQueue = songQueue;
-module.exports.songOwner = songOwner;

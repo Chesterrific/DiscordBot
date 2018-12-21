@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
         if (!message.guild.voiceConnection) {
             message.member.voiceChannel.join()
                     .then(connection => {
-                        message.channel.send("I AM HERE!");                       
+                        message.channel.send("I AM HERE!");
                     });
         }
     } else {
