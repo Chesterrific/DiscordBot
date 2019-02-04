@@ -2,7 +2,7 @@
 Discord Bot created using Javascript and Node.js. <br>
 This bot will search youtube for your given video and play the audio in your current channel<br>
 (note that you will need to install node.js for this application to work)<br>
-<h1>How To Add to server </h1><br>
+<h1>How To Add to server </h1>
 <ol>
 <li> Log into your discord account on the discord developer portal.</li>
 <li> Create a new application.</li>
